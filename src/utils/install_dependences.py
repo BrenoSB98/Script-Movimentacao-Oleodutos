@@ -26,3 +26,15 @@ def install_dotenv():
     except ImportError:
         # Executa um subprocesso para instalar o pacote usando o pip e o Python atual
         subprocess.check_call([sys.executable, "-m", "pip", "install", "python-dotenv", "--quiet"])
+
+def install_pillow():
+    """
+        Verifica se a biblioteca 'Pillow' está instalada e a instala silenciosamente, se necessário.
+
+        Esse tipo de verificação é útil quando o script precisa rodar em ambientes onde a dependência pode não estar previamente instalada.
+    """
+    try:
+        import PIL
+    except ImportError:
+        # Executa um subprocesso para instalar o pacote usando o pip e o Python atual
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "Pillow", "--quiet"])

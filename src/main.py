@@ -3,8 +3,15 @@ import sys
 import locale
 from datetime import datetime, timedelta
 
+from utils.install_dependences import install_openpyxl, install_pillow
+install_openpyxl()
+from openpyxl import load_workbook
+
+install_pillow()
+from PIL import Image
 import tkinter as tk
 from tkinter import messagebox
+
 from interface.select_worksheet import select_worksheets, create_backup, select_company_popup
 from core.load_movimentation import load_movimentation_logum, load_movimentation_transpetro
 

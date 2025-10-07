@@ -5,13 +5,17 @@ from datetime import datetime
 import tkinter as tk
 from tkinter import simpledialog
 from tkinter import filedialog
+
+from utils.install_dependences import install_dotenv, install_pillow
+
+install_dotenv()
+install_pillow()
+
+from dotenv import load_dotenv
 from PIL import Image, ImageTk
 
 from logger import get_logger
 from utils.install_dependences import install_dotenv
-
-install_dotenv()
-from dotenv import load_dotenv
 
 load_dotenv()
 logger = get_logger()
