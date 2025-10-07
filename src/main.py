@@ -36,7 +36,7 @@ def generate_name_sheet_logum():
     name_month = date_month_before.strftime('%B').title()
     year_actual = date_month_before.year
 
-    return f"{name_month}-{year_actual}"
+    return f"{name_month}-{year_actual}", f"{name_month}_{year_actual}"
 
 def main():
     """
@@ -75,8 +75,18 @@ def main():
                 source_wb, dest_wb = load_workbooks(origin_path, destiny)
 
                 if company.upper() == "LOGUM":
-                    dinamic_sheet_name = generate_name_sheet_logum()
-                    source_sheet = source_wb[dinamic_sheet_name]
+                    sheet_name_dash, sheet_name_underscore = generate_name_sheet_logum()
+                    source_sheet = None
+                    
+                    if sheet_name_dash in source_wb.sheetnames:
+                        source_sheet = source_wb[sheet_name_dash]
+                    elif sheet_name_underscore in source_wb.sheetnames:
+                        source_sheet = source_wb[sheet_name_underscore]
+                    
+                    if source_sheet is None:
+                        error(f'Planilha com nome "{sheet_name_dash}" ou "{sheet_name_underscore}" não encontrada na planilha {file_name}.')
+                        continue
+                    
                     register_sheet = dest_wb["Movimentação"]
 
                     for row in range(12, source_sheet.max_row + 1):

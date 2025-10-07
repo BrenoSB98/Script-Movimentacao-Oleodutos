@@ -1,10 +1,13 @@
 .venv
+.env
 
 __pycache__/
 *.pyc
 
-error_logs.txt
+src/error_logs.txt
 debug.log
 
 .logs/execucao.log
 .logs/erros.log
+.logs/debug.log
+logs
